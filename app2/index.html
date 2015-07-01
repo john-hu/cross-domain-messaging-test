@@ -1,0 +1,18 @@
+<html>
+  <head></head>
+  <body>
+    <input type="text" id="text"><button id="send">send</button>
+    <div id="msg"></div>
+    <script>
+      var opener;
+      window.onmessage = function(e) {
+        document.getElementById('msg').textContent += e.data;
+        opener = e.source;
+      };
+
+      document.getElementById('send').onclick = function() {
+        opener.postMessage(document.getElementById('text').value, '*');
+      };
+    </script>
+  </body>
+</html>
